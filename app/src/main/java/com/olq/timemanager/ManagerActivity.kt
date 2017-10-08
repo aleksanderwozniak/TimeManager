@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_manager.*
+import org.jetbrains.anko.alert
 
 class ManagerActivity : AppCompatActivity() {
 
@@ -20,8 +21,16 @@ class ManagerActivity : AppCompatActivity() {
 
         myTaskText.text = intent.getStringExtra("TASK_TEXT")
         myToggle.setOnClickListener { onBtnClick() }
+        myToggle.callOnClick()
     }
 
+    override fun onBackPressed() {
+        alert ("Do you want to exit?") {
+            title = "Exit"
+            positiveButton("Yes"){ super.onBackPressed() }
+            negativeButton("No"){}
+        }.show()
+    }
 
 
     fun onBtnClick(){
