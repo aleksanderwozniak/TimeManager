@@ -25,7 +25,7 @@ class TimerService : Service(){
 
 
     companion object {
-        val SERVICE_ID = TimerService::class.java.`package`.name
+        val SERVICE_ID = TimerService::class.java.`package`.name!!
         val CURRENT_TIME_ID = "current time id"
 
         var timeSavedState: Long = 0
@@ -103,7 +103,7 @@ class TimerService : Service(){
                 .setContentTitle("Time Manager")
                 .setTicker("Observing $taskName!")
                 .setContentText(taskName)
-                .setSmallIcon(R.drawable.ic_notif_timer)
+                .setSmallIcon(R.drawable.ic_notif_launcher)
                 .setContentIntent(pendingIntent)
                 .setOngoing(true)
                 .build()
