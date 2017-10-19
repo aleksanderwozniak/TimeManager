@@ -36,6 +36,7 @@ class TimerService : Service(){
         var taskName: String = ""
 
         fun resetData(){
+            isRunning = false
             timeSavedState = 0
             startTime = System.currentTimeMillis()
             currentTime = 0

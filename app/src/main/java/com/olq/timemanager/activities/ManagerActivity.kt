@@ -99,10 +99,11 @@ class ManagerActivity : AppCompatActivity() {
             val currentTime = intent.getLongExtra(TimerService.CURRENT_TIME_ID, 0)
 
             var seconds: Int = (currentTime / 1000).toInt()
-            val minutes: Int = seconds / 60
+            var minutes: Int = seconds / 60
             val hours: Int = minutes / 60
 
             seconds = seconds % 60
+            minutes = minutes % 60
 
             Log.d(TAG, "countTime - h: $hours, min: $minutes, s: $seconds")
             myTimerText.text = String.format("%02d:%02d:%02d", hours, minutes, seconds)
