@@ -8,8 +8,8 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="81dp">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/taskHolder"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -22,17 +22,15 @@
 
         <TextView
             android:id="@+id/myTaskText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="6dp"
-            android:fontFamily="sans-serif"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             android:text="Task Name"
-            android:textAllCaps="false"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/myToggle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,17 +38,16 @@
             android:id="@+id/myToggle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginEnd="3dp"
+            android:layout_marginEnd="4dp"
             android:checked="true"
             android:text="ToggleButton"
             android:textAllCaps="false"
             android:textOff="Off"
             android:textOn="On"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <TextView
         android:id="@+id/myTimerText"
@@ -64,20 +61,20 @@
         android:gravity="center"
         android:text="00:00:00"
         android:textSize="36sp"
-        app:layout_constraintBottom_toTopOf="@+id/myExitButton"
+        app:layout_constraintBottom_toTopOf="@+id/myBackButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/taskHolder" />
 
     <Button
-        android:id="@+id/myExitButton"
+        android:id="@+id/myBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:onClick="onBtnExitClick"
-        android:text="Exit"
+        android:onClick="onBtnBackClick"
+        android:text="Back"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

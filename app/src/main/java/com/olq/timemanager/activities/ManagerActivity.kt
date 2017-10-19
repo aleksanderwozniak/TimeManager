@@ -12,6 +12,7 @@ import com.olq.timemanager.R
 import com.olq.timemanager.services.TimerService
 import kotlinx.android.synthetic.main.activity_manager.*
 import org.jetbrains.anko.alert
+import org.jetbrains.anko.startActivity
 
 class ManagerActivity : AppCompatActivity() {
 
@@ -42,13 +43,13 @@ class ManagerActivity : AppCompatActivity() {
 
 
 
-    fun onBtnExitClick(view: View){
-        alert ("Do you want to exit?") {
-            title = "Exit"
+    fun onBtnBackClick(view: View){
+        alert ("Do you want to change the task?") {
+            title = "Back"
             positiveButton("Yes"){
                 stopService(Intent(applicationContext, TimerService::class.java))
                 TimerService.resetData()
-                super.onBackPressed() }
+                startActivity<MainActivity>() }
             negativeButton("No"){}
         }.show()
     }

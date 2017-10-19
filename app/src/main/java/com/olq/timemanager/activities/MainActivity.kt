@@ -22,6 +22,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+    }
+
 
     fun onAddBtnClick(){
         if(myEditText.text.isEmpty()){
