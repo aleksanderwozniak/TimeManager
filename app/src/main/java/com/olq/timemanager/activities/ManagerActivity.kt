@@ -19,6 +19,13 @@ class ManagerActivity : AppCompatActivity() {
     private val TAG = ManagerActivity::class.java.simpleName
 
 
+    private val broadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context, intent: Intent) {
+            updateGUI(intent)
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_manager)
@@ -33,7 +40,7 @@ class ManagerActivity : AppCompatActivity() {
         myTaskText.text = TimerService.taskName
     }
 
-    fun onBtnToggleClick(){
+    private fun onBtnToggleClick(){
         if (myToggle.isChecked){
             startService(Intent(this, TimerService::class.java))
         } else {
@@ -62,19 +69,19 @@ class ManagerActivity : AppCompatActivity() {
 
     public override fun onResume() {
         super.onResume()
-        registerReceiver(br, IntentFilter(TimerService.SERVICE_ID))
+        registerReceiver(broadcastReceiver, IntentFilter(TimerService.SERVICE_ID))
         Log.d(TAG, "Registered BroadcastReceiver")
     }
 
     public override fun onPause() {
         super.onPause()
-        unregisterReceiver(br)
+        unregisterReceiver(broadcastReceiver)
         Log.d(TAG, "Unregistered BroadcastReceiver")
     }
 
     public override fun onStop() {
         try {
-            unregisterReceiver(br)
+            unregisterReceiver(broadcastReceiver)
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -88,12 +95,6 @@ class ManagerActivity : AppCompatActivity() {
 
 
 
-
-    private val br = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            updateGUI(intent)
-        }
-    }
 
     private fun updateGUI(intent: Intent) {
         if (intent.extras != null) {

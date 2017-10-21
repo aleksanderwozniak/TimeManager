@@ -2,6 +2,7 @@ package com.olq.timemanager.activities
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.olq.timemanager.R
 import com.olq.timemanager.services.TimerService
 import kotlinx.android.synthetic.main.activity_main.*
@@ -15,10 +16,8 @@ class MainActivity : AppCompatActivity() {
 
         if(TimerService.isRunning){
             startActivity<ManagerActivity>()
-
         } else {
             setContentView(R.layout.activity_main)
-            myAddButton.setOnClickListener { onAddBtnClick() }
         }
     }
 
@@ -27,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    fun onAddBtnClick(){
+    fun onAddBtnClick(view: View){
         if(myEditText.text.isEmpty()){
             onEditTextEmpty()
         } else {
@@ -35,11 +34,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onEditTextEmpty(){
+    private fun onEditTextEmpty(){
         toast("Task name can't be empty")
     }
 
-    fun launchManagerActivity(text: String){
+    private fun launchManagerActivity(text: String){
         startActivity<ManagerActivity>("TASK_TEXT" to text)
     }
 }

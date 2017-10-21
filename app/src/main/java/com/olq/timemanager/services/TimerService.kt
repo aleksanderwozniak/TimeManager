@@ -53,7 +53,7 @@ class TimerService : Service(){
     }
 
 
-    fun initTimer(){
+    private fun initTimer(){
         startTime = System.currentTimeMillis()
 
         runnable = object : Runnable{
@@ -64,12 +64,12 @@ class TimerService : Service(){
         handler.post { runnable!!.run() }
     }
 
-    fun updateTimer(handler: Handler, runnable: Runnable){
+    private fun updateTimer(handler: Handler, runnable: Runnable){
         countTime()
         handler.postDelayed(runnable, 1000)
     }
 
-    fun countTime(){
+    private fun countTime(){
         currentTime = System.currentTimeMillis() - startTime + timeSavedState
 
         tsIntent.putExtra(CURRENT_TIME_ID, currentTime)
